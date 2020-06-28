@@ -5,7 +5,7 @@
         puts an intersect around the whole thing to monitor menu items coming
         and going -->
         <Intersect @enter="onShowItem" @leave="onHideItem" @destroy="onItemDestroy">
-            <WrapChildren class="primary">
+            <WrapChildren class="primary" :style="requiresFixedHeight">
                 <slot name="default"></slot>
             </WrapChildren>
         </Intersect>
@@ -35,7 +35,7 @@ export default {
         WrapChildren,
         Intersect
     },
-    properties: {
+    props: {
         startingHeight: { type: Number, required: false, default: 50 },
     },
     data() {
@@ -49,6 +49,11 @@ export default {
             return this.getVnodes()
                 .filter(node => this.overflowKeys.has(node.key))
                 .map(node => this.getMenuDataFromNode(node));
+        },
+        requiresFixedHeight() {
+            return {
+                height: `${this.height}px`
+            }
         }
     },
     methods: {

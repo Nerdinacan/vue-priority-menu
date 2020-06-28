@@ -5,7 +5,7 @@
         <button @click="() => counter--">Decrement</button>
         <button @click="() => nonsense = !nonsense">Toggle Prop not on component</button>
 
-        <PriorityMenu>
+        <PriorityMenu :starting-height="20">
 
             <PriorityMenuItem v-for="(n,i) in counter" :key="'before_' + i"
                 :title="makeTitle(n, textval, counter)"
